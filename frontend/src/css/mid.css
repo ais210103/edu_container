@@ -1,0 +1,11 @@
+.mid-container {
+  min-width: 1243px;
+  width: 90%;
+  height: 30vh;
+  background-color: rgb(37, 33, 33);
+  border: white 1px solid;
+  margin: 10px auto;
+  display: flex;
+  flex-direction: column;
+  padding: 0 1rem;
+}

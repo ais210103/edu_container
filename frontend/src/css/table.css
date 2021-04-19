@@ -1,0 +1,50 @@
+.Table-container {
+  width: 99%;
+  flex-grow: 1;
+  max-height: 20vh;
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-collapse: collapse;
+}
+tr {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+th {
+  background-color: black;
+  color: white;
+  width: 100%;
+  text-align: left;
+  padding: 5px;
+  font-size: 0.5rem;
+  border-left: white solid 0.125rem;
+  margin: 2px 5px;
+}
+td {
+  width: 100%;
+  font-size: 0.5rem;
+  background-color: rgb(19, 18, 18);
+  color: white;
+  padding: 0 10px;
+  height: 2rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.header {
+  background-color: black;
+}
+
+thead {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}

@@ -1,0 +1,27 @@
+.top-container {
+  min-width: 1243px;
+  width: 90%;
+  height: 30vh;
+  background-color: rgb(37, 33, 33);
+  border: white 1px solid;
+  margin: 10px auto;
+  display: flex;
+  flex-direction: column;
+  padding: 0 1rem;
+}
+.label-div {
+  height: fit-content;
+  width: 100%;
+  margin: 10px;
+  margin-bottom: 0;
+  color: white;
+  font-size: 1.375rem;
+}
+.container-content {
+  flex-grow: 1;
+  margin: 10px;
+  margin-top: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
