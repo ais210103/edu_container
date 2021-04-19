@@ -10,11 +10,11 @@ import Reduxexample from "./components/example";
 function App() {
   return (
     <div className="App">
-      {/* <Top></Top>
+      <Top></Top>
       <Mid></Mid>
       <Bot></Bot>
-      <Button></Button> */}
-      <Reduxexample></Reduxexample>
+      <Button></Button>
+      {/* <Reduxexample></Reduxexample> */}
     </div>
   );
 }

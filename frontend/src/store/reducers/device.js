@@ -26,7 +26,6 @@ export const slice = createSlice({
     abnormalList: [],
     gasPressure: null,
     QAList: [],
-    testArray: [],
     gasLockPressure: "",
   },
 
@@ -114,15 +113,7 @@ export const slice = createSlice({
       const index = copy.findIndex((item) => item.code === DQ);
       state.QAList[index].answer = action.payload.answer;
     },
-    setTestArray: (state, action) => {
-      state.testArray = action.payload;
-    },
-    setTestArrayTest: (state, action) => {
-      const copy = state.testArray;
-      const id = action.payload.id;
-      const index = copy.findIndex((item) => item.id === id);
-      state.testArray[index].test = action.payload.test;
-    },
+
     setGasLockPressure: (state, action) => {
       state.gasLockPressure = action.payload;
     },
