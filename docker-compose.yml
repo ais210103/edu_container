@@ -1,0 +1,79 @@
+version: "3.7"
+services:
+  reverse:
+    container_name: nginx1
+    restart: on-failure
+    hostname: reverse
+    image: nginx
+    ports:
+      - "8030:8030"
+    volumes:
+      - ./nginx1/config:/etc/nginx
+      - ./nginx1/certs:/etc/ssl/private
+    depends_on:
+      - api
+      - client
+    networks:
+      - main
+
+  db:
+    image: postgres
+    container_name: ais_portal_db
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=ais_portal_postgres
+      - POSTGRES_PASSWORD=ais123456
+      - TZ=Asia/Tokyo
+      - PGTZ=Asia/Tokyo
+    volumes:
+      - "./db/data/:/var/lib/postgresql/data/"
+    networks:
+      - main
+
+  api:
+    container_name: ais_portal_server
+    restart: always
+    build:
+      context: ./backend/
+      dockerfile: Dockerfile
+    volumes:
+      - ./backend/:/backend/
+    environment:
+      - POSTGRES_USER=ais_portal_postgres
+      - POSTGRES_PASSWORD=ais123456
+      - POSTGRES_HOST=db
+      - POSTGRES_DB=postgres
+      - POSTGRES_PORT=5432
+      - TZ=Asia/Tokyo
+    command: python3 -m ais_portal
+    depends_on:
+      - "db"
+    networks:
+      - main
+
+  client:
+    container_name: ais_portal_frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    volumes:
+      - "./frontend/:/frontend/"
+      - "/frontend/node_modules"
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - PUBLIC_URL=/front/main
+      - REACT_APP_PUBLIC_URL=/front/main
+      - REACT_APP_API_SERVICE_URL=http://localhost:8080
+      - CHOKIDAR_USEPOLLING=true
+    command: npm start
+    depends_on:
+      - "api"
+    networks:
+      - main
+
+networks:
+  main:
